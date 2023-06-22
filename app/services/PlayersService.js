@@ -17,11 +17,12 @@ class PlayersService {
   setActivePlayer(playerId) {
     let foundPlayer = AppState.players.find(player => player.id == playerId)
     AppState.activePlayer = foundPlayer
-    console.log(AppState.activePlayer);
     AppState.emit('activePlayer')
   }
 
-
+  savePlayers() {
+    _savePlayers()
+  }
 }
 
 export const playersService = new PlayersService()

@@ -15,7 +15,7 @@ function _setRandomFruit() {
 
 function _startRound() {
   gameService.startRound()
-  setTimeout(_endRound, 10000)
+  setTimeout(_endRound, 60000)
 }
 
 function _endRound() {
@@ -35,11 +35,15 @@ export class GameController {
   checkAnswer(event) {
     event.preventDefault()
     let form = getFormData(event.target)
-
+    let fruit = document.getElementById('active-fruit')
 
     event.target.reset()
     if (gameService.checkAnswer(form)) {
       _setRandomFruit()
+      AppState.emit('activePlayer')
+      fruit.classList.remove('text-danger')
+    } else {
+      fruit.classList.add('text-danger')
     }
   }
 }

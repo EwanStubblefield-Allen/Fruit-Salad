@@ -1,1 +1,26 @@
 /* BASIC STYLES HERE */
+p {
+  margin: 0
+}
+
+.borders {
+  border-radius: 10px;
+  border: 3px solid #000;
+}
+
+.title-text {
+  box-shadow: 14px -10px 0px 0px #FD8A8F;
+}
+
+.player-text {
+  box-shadow: -5px -5px 0px 0px #0faf0a;
+}
+
+.fruit-text {
+  box-shadow: -14px 10px 0px 0px #e429e4;
+}
+
+.list-text {
+  box-shadow: 14px 10px 0px 0px #faf620;
+  height: fit-content;
+}

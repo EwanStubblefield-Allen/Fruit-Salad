@@ -4,12 +4,13 @@ import { HomeController } from "./controllers/HomeController.js";
 import { PlayersController } from "./controllers/PlayersController.js";
 import { ValuesController } from "./controllers/ValuesController.js";
 import { AboutView } from "./views/AboutView.js";
+import { PlayersView } from "./views/PlayersView.js";
 
 
 export const router = [
   {
     path: '',
     controller: [PlayersController, GameController],
-    view: ''
+    view: PlayersView
   },
 ]

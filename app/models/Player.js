@@ -10,26 +10,36 @@ export class Player {
 
   get ListTemplate() {
     return `
-    <li class="selectable" onclick="app.PlayersController.setActivePlayer('${this.id}')">
-      ${this.name} Highscore: ${this.highScore}
-    </li>`
+    <div class="selectable d-flex justify-content-between p-3 fs-3"
+      onclick="app.PlayersController.setActivePlayer('${this.id}')">
+      <p>${this.name}</p>
+      <p>Highscore: ${this.highScore}</p>
+    </div>`
   }
 
   get ActivePlayerTemplate() {
     return `
-    <h2>${this.name}</h2>
-    <h2 id="active-fruit">Banana</h2>
-    <form onsubmit="app.GameController.checkAnswer(event)">
-      <input id="fruit-input" type="text" name="word"/>
-    </form>`
+      <div class="col-6 d-flex justify-content-between my-5 p-4 fs-4 text-center borders player-text">
+        <p>${this.name}</p>
+        <p>Score: ${this.score}</p>
+      </div>
+      <div class="col-6 text-center borders fruit-text">
+        <h2 id="active-fruit" class="pt-5 pb-2">Banana</h2>
+        <form onsubmit="app.GameController.checkAnswer(event)" class="pt-2 pb-5 px-5">
+          <input id="fruit-input" class="w-100" type="text" name="word" />
+        </form>
+      </div>`
   }
 
   get HighScoreTemplate() {
     return `
-    <h2>${this.name}</h2>
-    <p class="mb-0">Round Over</p>
-    <p class="mb-0">Your Score was: ${this.score}</p>
-    <p>Your High Score is: ${this.highScore}</p>
+    <div class="col-6 d-flex justify-content-between my-5 p-4 fs-4 text-center borders player-text">
+      <p>${this.name}</p>
+      <p>Score: ${this.score}</p>
+    </div>
+    <div class="col-6 text-center borders fruit-text py-5">
+      <h2>High Score: ${this.highScore}</h2>
+    </div>
     `
   }
 }

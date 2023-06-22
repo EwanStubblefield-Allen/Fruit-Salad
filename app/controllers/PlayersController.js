@@ -1,7 +1,6 @@
 import { AppState } from "../AppState.js"
 import { playersService } from "../services/PlayersService.js"
 import { getFormData } from "../utils/FormHandler.js"
-import { saveState } from "../utils/Store.js"
 import { setHTML } from "../utils/Writer.js"
 
 function _drawPlayers() {
@@ -9,10 +8,6 @@ function _drawPlayers() {
   let template = ''
 
   players.forEach(player => template += player.ListTemplate)
-  template += `
-    <form onsubmit="app.PlayersController.createPlayer(event)" >
-      <input type="text" name="name"/>
-    </form>`
   setHTML('player-list', template)
 }
 
@@ -47,5 +42,6 @@ export class PlayersController {
 
   setActivePlayer(playerId) {
     playersService.setActivePlayer(playerId)
+    document.getElementById('fruit-input').focus()
   }
 }
