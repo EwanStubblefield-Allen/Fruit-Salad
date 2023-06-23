@@ -1,5 +1,5 @@
 import { AppState } from "../AppState.js"
-import { playersService } from "./PlayersService.js"
+import { playersService } from "./PlayersService.js";
 
 class GameService {
   setRandomFruit() {
@@ -23,8 +23,8 @@ class GameService {
     let player = AppState.activePlayer
     if (player.score > player.highScore) {
       player.highScore = player.score
+      playersService.savePlayers()
     }
-    playersService.savePlayers()
   }
 }
 

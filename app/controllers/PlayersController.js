@@ -13,10 +13,7 @@ function _drawPlayers() {
 
 function _drawActivePlayer() {
   let player = AppState.activePlayer
-
-  if (player) {
-    setHTML('active-player', player.ActivePlayerTemplate)
-  }
+  setHTML('active-player', player.ActivePlayerTemplate)
 }
 
 export class PlayersController {
@@ -24,7 +21,6 @@ export class PlayersController {
     console.log('Player Controller Loaded')
 
     _drawPlayers()
-    _drawActivePlayer()
 
     AppState.on('players', _drawPlayers)
     AppState.on('activePlayer', _drawActivePlayer)
@@ -32,11 +28,10 @@ export class PlayersController {
 
   createPlayer(event) {
     event.preventDefault()
-    console.log(event);
     let form = event.target
     let data = getFormData(form)
-    console.log(data);
     playersService.createPlayer(data)
+    playersService.savePlayers()
     form.reset()
   }
 

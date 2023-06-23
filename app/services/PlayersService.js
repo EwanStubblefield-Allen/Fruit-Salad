@@ -11,13 +11,11 @@ class PlayersService {
     let newPlayer = new Player(form)
     AppState.players.push(newPlayer)
     AppState.emit('players')
-    _savePlayers()
   }
 
   setActivePlayer(playerId) {
     let foundPlayer = AppState.players.find(player => player.id == playerId)
     AppState.activePlayer = foundPlayer
-    AppState.emit('activePlayer')
   }
 
   savePlayers() {

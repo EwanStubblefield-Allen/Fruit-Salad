@@ -3,6 +3,8 @@ import { gameService } from "../services/GameService.js";
 import { getFormData } from "../utils/FormHandler.js";
 import { setHTML, setText } from "../utils/Writer.js";
 
+let roundStarted = false
+
 function _drawFruit() {
   let fruit = AppState.activeFruit
   setText('active-fruit', fruit.toUpperCase())
@@ -14,11 +16,15 @@ function _setRandomFruit() {
 }
 
 function _startRound() {
-  gameService.startRound()
-  setTimeout(_endRound, 60000)
+  if (!roundStarted) {
+    gameService.startRound()
+    roundStarted = true
+    setTimeout(_endRound, 60000)
+  }
 }
 
 function _endRound() {
+  roundStarted = false
   gameService.endRound()
   AppState.emit('players')
   setHTML('active-player', AppState.activePlayer.HighScoreTemplate)
@@ -37,7 +43,6 @@ export class GameController {
     let form = getFormData(event.target)
     let fruit = document.getElementById('active-fruit')
 
-    event.target.reset()
     if (gameService.checkAnswer(form)) {
       _setRandomFruit()
       AppState.emit('activePlayer')
@@ -45,5 +50,7 @@ export class GameController {
     } else {
       fruit.classList.add('text-danger')
     }
+    event.target.reset()
+    document.getElementById('fruit-input').focus()
   }
 }
